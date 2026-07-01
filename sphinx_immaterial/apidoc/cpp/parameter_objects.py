@@ -541,7 +541,8 @@ def _monkey_patch_domain_to_cross_link_parameters_and_add_synopses(
             )
             if synopsis:
                 for symbol in symbols:
-                    synopses.set_synopsis(symbol, synopsis)
+                    if symbol.declaration is not None:
+                        synopses.set_synopsis(symbol, synopsis)
         orig_after_content(self)
 
     object_class.after_content = after_content  # type: ignore
